@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    private static int _nextLevelIndex = 1;
+    private static int _nextLevelIndex = 1; // Starting at Level 1
     private Enemy[] _enemies;
 
     private void OnEnable()
@@ -17,13 +17,13 @@ public class LevelController : MonoBehaviour
         foreach (Enemy enemy in _enemies)
         {
             if (enemy != null)
-                return;
+                return; // If any enemy is still alive, exit the method
         }
 
-        Debug.Log("You killed all enemies");
+        Debug.Log("All enemies killed, loading next level.");
 
         _nextLevelIndex++;
-        string nextLevelName = "Level" + _nextLevelIndex;
+        string nextLevelName = "Level" + _nextLevelIndex.ToString(); // Use ToString to ensure correct formatting
         SceneManager.LoadScene(nextLevelName);
     }
 }
